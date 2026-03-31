@@ -24,7 +24,7 @@ public class ArgentApp extends Application {
 
     @Override
     public void start(Stage stage) {
-        loadUsers();  // Load saved accounts
+        loadUsers();  
 
         try {
             Image icon = new Image(getClass().getResourceAsStream("/icon.png"));
@@ -145,7 +145,7 @@ public class ArgentApp extends Application {
             );
 
             users.put(uName, newUser);
-            saveUsers(); // Persist accounts
+            saveUsers(); 
             msg.setText("Account created. Account #: " + newUser.accountNumber);
         });
 
@@ -312,7 +312,7 @@ public class ArgentApp extends Application {
 
             currentUser.transactions.add(new Transaction("SENT", amt, recipientUser.accountNumber));
             recipientUser.transactions.add(new Transaction("RECEIVED", amt, currentUser.accountNumber));
-            saveUsers(); // persist after transfer
+            saveUsers();
 
             updateBalance(balance);
             msg.setText("Transfer successful");
@@ -368,7 +368,7 @@ public class ArgentApp extends Application {
                 "-fx-padding: 15;";
     }
 
-    // ==================== SERIALIZATION ====================
+    //SERIALIZATION 
     private static void saveUsers() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(DATA_FILE))) {
             out.writeObject(users);
@@ -388,7 +388,7 @@ public class ArgentApp extends Application {
         }
     }
 
-    // ==================== USER & TRANSACTION ====================
+    //USER & TRANSACTION
     static class User implements Serializable {
         private static final long serialVersionUID = 1L;
 
